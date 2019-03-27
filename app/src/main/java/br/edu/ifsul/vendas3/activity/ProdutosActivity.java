@@ -33,7 +33,7 @@ public class ProdutosActivity extends AppCompatActivity {
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("vendas/produtos");
+        DatabaseReference myRef = database.getReference("vendas3/produtos");
 
         // Read from the database
         myRef.orderByChild("nome").addValueEventListener(new ValueEventListener() {
