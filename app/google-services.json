@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "982899641321",
+    "firebase_url": "https://vendas3-d40d8.firebaseio.com",
+    "project_id": "vendas3-d40d8",
+    "storage_bucket": "vendas3-d40d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982899641321:android:e7ceec2ab112526b",
+        "android_client_info": {
+          "package_name": "br.edu.ifsul.vendas3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982899641321-e3irvlomgckl1v68hhcc98dlh3tf447m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifsul.vendas3",
+            "certificate_hash": "a03759828fe8ea4ad4c2fdc87480754017a7c3de"
+          }
+        },
+        {
+          "client_id": "982899641321-r7dhbmvavmblnhreut91jkp8huidfjbj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsY0kbR7HShbb25OphXCZiqvlkIbR83bo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982899641321-r7dhbmvavmblnhreut91jkp8huidfjbj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
