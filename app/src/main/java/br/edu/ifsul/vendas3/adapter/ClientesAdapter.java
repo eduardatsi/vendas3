@@ -38,8 +38,8 @@ public class ClientesAdapter extends ArrayAdapter<Cliente> {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_cliente_adapter, parent, false);
         }
 
-        TextView tvNome = convertView.findViewById(R.id.tvNomeProdutoAdapter);
-        TextView tvSobrenome = convertView.findViewById(R.id.tvSobrenomeClienteAdapater);
+        TextView tvNome = convertView.findViewById(R.id.tvNomeClienteAdapter);
+        TextView tvSobrenome = convertView.findViewById(R.id.tvSobrenomeClienteAdapter);
         ImageView imvFoto = convertView.findViewById(R.id.imvFotoClienteAdapter);
 
         assert cliente != null;

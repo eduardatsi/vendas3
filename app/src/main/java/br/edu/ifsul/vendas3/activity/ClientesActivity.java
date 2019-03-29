@@ -18,7 +18,7 @@ import java.util.List;
 import br.edu.ifsul.vendas3.R;
 import br.edu.ifsul.vendas3.adapter.ClientesAdapter;
 import br.edu.ifsul.vendas3.model.Cliente;
-import br.edu.ifsul.vendas3.model.Produto;
+
 
 public class ClientesActivity extends AppCompatActivity {
     private static final String TAG = "clientesactivity";

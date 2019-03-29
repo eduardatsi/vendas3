@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
@@ -11,14 +10,14 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,18 +26,19 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvSobrenomeClienteAdapater"
-                android:layout_width="96dp"
-                android:layout_height="28dp"
+                android:id="@+id/tvSobrenomeClienteAdapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="196dp"
-                android:layout_marginRight="196dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="end"
                 android:hint="Sobrenome"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvSobrenomeClienteAdapter" />
 
             <TextView
                 android:id="@+id/tvNomeClienteAdapter"
@@ -49,10 +49,10 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="Nome"
+                android:hint="@string/hint_nome"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.034"
                 app:layout_constraintStart_toEndOf="@+id/imvFotoClienteAdapter"
                 app:layout_constraintTop_toTopOf="@+id/imvFotoClienteAdapter" />
 
@@ -63,9 +63,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:contentDescription="@string/content_description_foto_produto"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="foto cliente"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/img_cliente_icon_524x524" />
 
         </android.support.constraint.ConstraintLayout>
