@@ -16,24 +16,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsul.vendas3.R;
-import br.edu.ifsul.vendas3.adapter.ProdutosAdapter;
+import br.edu.ifsul.vendas3.adapter.ClientesAdapter;
+import br.edu.ifsul.vendas3.model.Cliente;
 import br.edu.ifsul.vendas3.model.Produto;
 
-public class ProdutosActivity extends AppCompatActivity {
-
-    private static final String TAG = "produtosactivity";
-    private ListView lvProdutos;
+public class ClientesActivity extends AppCompatActivity {
+    private static final String TAG = "clientesactivity";
+    private ListView lvClientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produtos);
+        setContentView(R.layout.activity_clientes);
 
-        lvProdutos = findViewById(R.id.lv_produtos);
+        lvClientes = findViewById(R.id.lv_clientes);
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("produtos");
+        DatabaseReference myRef = database.getReference("clientes");
 
         // Read from the database
         myRef.orderByChild("nome").addValueEventListener(new ValueEventListener() {
@@ -43,15 +43,15 @@ public class ProdutosActivity extends AppCompatActivity {
                 //imprime os dados originais no LogCat (veja que eles chegam na ordem de criação dos nós)
                 Log.d(TAG, "Value is: " + dataSnapshot.getValue());
 
-                List<Produto> produtos = new ArrayList<>();
+                List<Cliente> clientes = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    Produto produto = ds.getValue(Produto.class);
-                    produto.setKey(ds.getKey()); //armazena a UUID gerada pelo banco
-                    produtos.add(produto);
+                    Cliente cliente = ds.getValue(Cliente.class);
+                    cliente.setKey(ds.getKey()); //armazena a UUID gerada pelo banco
+                    clientes.add(cliente);
                 }
 
                 //carrega os dados na View
-                lvProdutos.setAdapter(new ProdutosAdapter(ProdutosActivity.this, produtos));
+                lvClientes.setAdapter(new ClientesAdapter(ClientesActivity.this, clientes));
 
             }
 

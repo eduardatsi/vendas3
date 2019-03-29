@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "982899641321-seibq7mib6oe7do8668i7r2u10ved4cf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifsul.vendas3",
+            "certificate_hash": "cca7cdbf690549cd3502c9785842678d12e8fe4d"
+          }
+        },
+        {
           "client_id": "982899641321-r7dhbmvavmblnhreut91jkp8huidfjbj.apps.googleusercontent.com",
           "client_type": 3
         }
