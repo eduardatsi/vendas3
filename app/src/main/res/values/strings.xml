@@ -13,4 +13,25 @@
     <string name="hint_nome">nome</string>
     <string name="content_description_foto_produto">foto do produto</string>
     <string name="hint_valor">Valor</string>
+    <string name="action_settings">menu</string>
+    <string name="foto_do_produto">qtd</string>
+    <string name="hint_nome_searchview">teste</string>
+    <string name="hint_valor_produto">valor produto</string>
+    <string name="hint_estoque_produto">estoque produto</string>
+    <string name="hint_nome_produto">nome_produto</string>
+    <string name="bt_vender">bt_vender</string>
+    <string name="hint_descricao_produto">descricao_produto</string>
+    <string name="hint_quantos">quantos</string>
+    <string name="hint_vendedor">vendedor</string>
+    <string name="label_estoque">label_estoque</string>
+    <string name="menu_nav_carrinho">menu_nav_carrinho</string>
+    <string name="menu_nav_lista_de_clientes">menu_nav_lista_de_clientes</string>
+    <string name="menu_nav_produto_admin">menu_nav_produto_admin</string>
+    <string name="menu_nav_cliente_admin">menu_nav_cliente_admin</string>
+    <string name="menu_nav_sobre">menu_nav_sobre</string>
+    <string name="menu_nav_sair">menu_nav_sair</string>
+    <string name="menu_vender">menu_vender</string>
+    <string name="menu_cancelar">menu_cancelar</string>
+    <string name="title_menu_lercodigodebarras">tittle_menu_lercodigodebarras</string>
+    <string name="menu_pesquisar">menu_pesquisar</string>
 </resources>
