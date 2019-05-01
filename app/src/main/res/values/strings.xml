@@ -3,8 +3,8 @@
     <string name="hint_senha">senha</string>
     <string name="hint_email">Email</string>
     <string name="contentDescription">Logo da empresa</string>
-    <string name="bt_sigin">Sing In</string>
-    <string name="bt_sigup">Sing Up</string>
+    <string name="bt_sigin">Entrar</string>
+    <string name="bt_sigup">Cadastrar</string>
     <string name="password_fail">Senha não cadastrada.</string>
     <string name="email_fail">Email não cadastrado.</string>
     <string name="email_already">Email já cadastrado.</string>
@@ -15,7 +15,7 @@
     <string name="hint_valor">Valor</string>
     <string name="action_settings">menu</string>
     <string name="foto_do_produto">qtd</string>
-    <string name="hint_nome_searchview">teste</string>
+    <string name="hint_nome_searchview">procurar</string>
     <string name="hint_valor_produto">valor produto</string>
     <string name="hint_estoque_produto">estoque produto</string>
     <string name="hint_nome_produto">nome_produto</string>
@@ -34,4 +34,22 @@
     <string name="menu_cancelar">menu_cancelar</string>
     <string name="title_menu_lercodigodebarras">tittle_menu_lercodigodebarras</string>
     <string name="menu_pesquisar">menu_pesquisar</string>
+    <string name="title_selecionar_cliente">Deseja selecionar este cliente?</string>
+    <string name="message_nome_cliente">Nome:</string>
+    <string name="message_cpf_cliente">CPF:</string>
+    <string name="alertdialog_sim">Sim</string>
+    <string name="toast_cliente_selecionado">Cliente selecionado:</string>
+    <string name="alertdialog_nao">Não</string>
+    <string name="snack_operacao_cancelada">Operação cancelada</string>
+    <string name="snack_codigo_barras_nao_cadastrado">Código de Barras NÃO encontrado.</string>
+    <string name="barcode_failure">falha no código de barras</string>
+    <string name="barcode_error">erro no código de barras</string>
+    <string name="toast_adicionado_ao_carrinho">Produto adicionado ao carrinho</string>
+    <string name="permission_camera_rationale">permissao</string>
+    <string name="ok">Ok</string>
+    <string name="low_storage_error">erro</string>
+    <string name="no_camera_permission">permissão da camera</string>
+    <string name="title_confimar">Confirmar</string>
+    <string name="message_confirma_cancelar">Confirma Cancelar</string>
+    <string name="message_confirma_salvar">Confirma Salvar</string>
 </resources>

@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.edu.ifsul.vendas3">
 
+    <!-- Para o leitor de código de barras -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,13 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-            <activity android:name=".activity.ProdutosActivity">
+        <activity android:name=".activity.CarrinhoActivity" android:label="Carrinho"></activity>
+        <activity android:name=".activity.ProdutoDetalheActivity" />
+        <activity android:name=".activity.ClientesActivity" android:label="Clientes"/>
+        <activity android:name=".activity.ProdutosActivity" android:label="Produtos"/>
+        <activity android:name=".activity.LoginActivity" android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"/>
+
+        <activity android:name=".barcode.BarcodeCaptureActivity" android:label="Leitor de código" />
+
     </application>
 </manifest>

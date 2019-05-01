@@ -2,7 +2,7 @@ package br.edu.ifsul.vendas3.model;
 
 import java.io.Serializable;
 
-class ItemPedido implements Serializable {
+public class ItemPedido implements Serializable {
     private Long id;
     private Integer quantidade;
     private Double totalItem;

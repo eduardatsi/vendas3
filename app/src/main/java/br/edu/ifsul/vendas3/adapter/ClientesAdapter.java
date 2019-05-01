@@ -34,18 +34,19 @@ public class ClientesAdapter extends ArrayAdapter<Cliente> {
 
         Cliente cliente = getItem(position);
 
+        //infla a view
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_cliente_adapter, parent, false);
         }
 
+        //mapeia os componentes da UI para vincular os dados do objeto de modelo
         TextView tvNome = convertView.findViewById(R.id.tvNomeClienteAdapter);
-        TextView tvSobrenome = convertView.findViewById(R.id.tvSobrenomeClienteAdapter);
         ImageView imvFoto = convertView.findViewById(R.id.imvFotoClienteAdapter);
+        TextView tvDetalhes = convertView.findViewById(R.id.tvDerscricaoProduto);
 
         assert cliente != null;
-        tvNome.setText(cliente.getNome());
-        tvSobrenome.setText(cliente.getSobrenome());
-        if(cliente.getUrl_foto() != null){
+        tvNome.setText(cliente.getNome() + " " + cliente.getSobrenome());
+        if(cliente.getUrl_foto().equals("")){
 
         }else{
             imvFoto.setImageResource(R.drawable.img_cliente_icon_524x524);
