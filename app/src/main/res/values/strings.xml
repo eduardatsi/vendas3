@@ -24,12 +24,12 @@
     <string name="hint_quantos">quantos</string>
     <string name="hint_vendedor">vendedor</string>
     <string name="label_estoque">label_estoque</string>
-    <string name="menu_nav_carrinho">menu_nav_carrinho</string>
-    <string name="menu_nav_lista_de_clientes">menu_nav_lista_de_clientes</string>
-    <string name="menu_nav_produto_admin">menu_nav_produto_admin</string>
-    <string name="menu_nav_cliente_admin">menu_nav_cliente_admin</string>
-    <string name="menu_nav_sobre">menu_nav_sobre</string>
-    <string name="menu_nav_sair">menu_nav_sair</string>
+    <string name="menu_nav_carrinho">Carrinho</string>
+    <string name="menu_nav_lista_de_clientes">Clientes</string>
+    <string name="menu_nav_produto_admin">Lista de Produtos</string>
+    <string name="menu_nav_cliente_admin">Lista de Clientes</string>
+    <string name="menu_nav_sobre">Sobre</string>
+    <string name="menu_nav_sair">Sair</string>
     <string name="menu_vender">menu_vender</string>
     <string name="menu_cancelar">menu_cancelar</string>
     <string name="title_menu_lercodigodebarras">tittle_menu_lercodigodebarras</string>
@@ -52,4 +52,10 @@
     <string name="title_confimar">Confirmar</string>
     <string name="message_confirma_cancelar">Confirma Cancelar</string>
     <string name="message_confirma_salvar">Confirma Salvar</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

@@ -5,8 +5,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +40,8 @@ import br.edu.ifsul.vendas3.barcode.BarcodeCaptureActivity;
 import br.edu.ifsul.vendas3.model.Produto;
 import br.edu.ifsul.vendas3.setup.AppSetup;
 
-public class ProdutosActivity extends AppCompatActivity {
+public class ProdutosActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "produtosactivity";
     private static final int RC_BARCODE_CAPTURE = 1;
@@ -43,7 +50,19 @@ public class ProdutosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produtos);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         lvProdutos = findViewById(R.id.lv_produtos);
         lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,6 +105,16 @@ public class ProdutosActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -168,4 +197,63 @@ public class ProdutosActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_carrinho: {
+                if(AppSetup.carrinho.isEmpty()) {
+                    Toast.makeText(this, "O carrinho está vazio", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(ProdutosActivity.this, CarrinhoActivity.class));
+                }
+                break;
+            }
+            case R.id.nav_clientes: {
+                if(AppSetup.clientes.isEmpty()) {
+                    Toast.makeText(this, "Não existem clientes cadastrados", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
+                }
+                break;
+            }
+//            case R.id.nav_produto_adminstracao: {
+//                if(AppSetup.produtos.isEmpty()) {
+//                    Toast.makeText(this, "Não existem produtos cadastrados", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//
+//                }
+//                break;
+//            }
+//            case R.id.nav_cliente_administracao: {
+//                if(AppSetup.produtos.isEmpty()) {
+//                    Toast.makeText(this, "Não existem clientes cadastrados", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//
+//                }
+//                break;
+////            }
+//              case R.id.nav_sobre: {
+//                startActivity(new Intent(ProdutosActivity.this, SobreActivity.class));
+//                break;
+//              }
+            case R.id.nav_sair: {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+            }
+
+
+            }
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
 }

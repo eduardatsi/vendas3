@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import br.edu.ifsul.vendas3.R;
 import br.edu.ifsul.vendas3.adapter.CarrinhoAdapter;
@@ -70,11 +74,58 @@ public class CarrinhoActivity extends AppCompatActivity {
     }
 
     private void editaItem(int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //adiciona um título e uma mensagem
+        builder.setTitle(R.string.title_confimar);
+        builder.setMessage("Você tem certeza que deseja editar esse item?");
+        //adiciona os botões
+        builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+            }
+        });
+        builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
+    }
+
+    private void excluiItem(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //adiciona um título e uma mensagem
+        builder.setTitle(R.string.title_confimar);
+        builder.setMessage("Você tem certeza que deseja excluir esse item?");
+        //adiciona os botões
+        builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                removeItem(position);
+            }
+        });
+        builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
     }
 
     private void removeItem(int position) {
-//    tenho que fazer o inverso do myRef.setValue(produto.getQuantidade()-quantidade);//feita a alteração do dado no firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("produtos/" + AppSetup.carrinho.get(position).getProduto().getKey() + "/quantidade");
+        myRef.setValue(AppSetup.produtos.get(position).getQuantidade() + AppSetup.carrinho.get(position).getQuantidade());
+        AppSetup.carrinho.remove(position);
+        Log.d("item", "item removido");
+        atualizaView();
+        Toast.makeText(CarrinhoActivity.this, "Produto removido com sucesso!", Toast.LENGTH_SHORT).show();
+
     }
 
     private void confirmaCancelar() {
@@ -86,7 +137,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                AppSetup.carrinho = null;
+                AppSetup.carrinho.clear();
+                AppSetup.cliente = null;
                 finish();
             }
         });
