@@ -32,7 +32,7 @@
     <string name="menu_vender">Vender</string>
     <string name="menu_cancelar">Cancelar</string>
     <string name="title_menu_lercodigodebarras">Código de Barras</string>
-    <string name="menu_pesquisar">menu_pesquisar</string>
+    <string name="menu_pesquisar">Pesquisar</string>
     <string name="title_selecionar_cliente">Deseja selecionar este cliente?</string>
     <string name="message_nome_cliente">Nome:</string>
     <string name="message_cpf_cliente">CPF:</string>
@@ -41,15 +41,15 @@
     <string name="alertdialog_nao">Não</string>
     <string name="snack_operacao_cancelada">Operação cancelada</string>
     <string name="snack_codigo_barras_nao_cadastrado">Código de Barras NÃO encontrado.</string>
-    <string name="barcode_failure">falha no código de barras</string>
+    <string name="barcode_failure">Falha no código de barras</string>
     <string name="barcode_error">erro no código de barras</string>
     <string name="toast_adicionado_ao_carrinho">O produto foi adicionado com sucesso!</string>
-    <string name="permission_camera_rationale">permissao</string>
+    <string name="permission_camera_rationale">Permissão</string>
     <string name="ok">Ok</string>
     <string name="low_storage_error">erro</string>
     <string name="no_camera_permission">Permissão da Câmera</string>
     <string name="title_confimar">Confirmar</string>
-    <string name="message_confirma_cancelar">Confirma Cancelar</string>
+    <string name="message_confirma_cancelar">Deseja cancelar esta venda?</string>
     <string name="message_confirma_salvar">Confirma Salvar</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
