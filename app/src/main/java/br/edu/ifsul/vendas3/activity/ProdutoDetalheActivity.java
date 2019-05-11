@@ -44,7 +44,6 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_produto_detalhe);
 
-        //mapeia os componentes da UI
         tvNome = findViewById(R.id.tvNomeProduto);
         tvDescricao = findViewById(R.id.tvDerscricaoProduto);
         tvValor = findViewById(R.id.tvValorProduto);
@@ -53,13 +52,11 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
         imvFoto = findViewById(R.id.imvFoto);
         btVender = findViewById(R.id.btComprarProduto);
 
-        //obtém o objeto Produto anexado como metadado
         Integer position = getIntent().getExtras().getInt("position");
         produto = AppSetup.produtos.get(position);
         Log.d(TAG, "" + produto.equals(AppSetup.produtos.get(position)));
 
 
-        //bindView
         tvNome.setText(produto.getNome());
         tvDescricao.setText((produto.getDescricao()));
         tvValor.setText(NumberFormat.getCurrencyInstance().format(AppSetup.produtos.get(position).getValor()));
@@ -67,15 +64,13 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
             //carrega a imagem aqui
         }
 
-        //obtem a referencia do database e do nó
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("produtos/" + produto.getKey() + "/quantidade");
-        // Escuta o database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Integer quantidade = dataSnapshot.getValue(Integer.class);
-                tvEstoque.setText(String.format("%s %s","Estoque:", quantidade.toString()));
+                tvEstoque.setText(String.format("%s %s",getString(R.string.label_estoque), quantidade.toString()));
                 produto.setQuantidade(quantidade);
             }
 
@@ -92,22 +87,23 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
                     startActivity(new Intent(ProdutoDetalheActivity.this, ClientesActivity.class));
                 }else{
                     if(etQuantidade.getText().toString().isEmpty()){
-                        Toast.makeText(ProdutoDetalheActivity.this, "Digite a quantidade.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProdutoDetalheActivity.this, "Digite a quantidade a ser vendida.", Toast.LENGTH_SHORT).show();
                     }else{
                         Integer quantidade = Integer.valueOf(etQuantidade.getText().toString());
                         if(quantidade <= produto.getQuantidade()){
-                            //vende
+
                             ItemPedido item = new ItemPedido();
                             item.setProduto(produto);
                             item.setQuantidade(quantidade);
                             item.setTotalItem(quantidade * produto.getValor());
                             item.setSituacao(true);
                             AppSetup.carrinho.add(item);
+                            myRef.setValue(produto.getQuantidade() - quantidade);
                             Toast.makeText(ProdutoDetalheActivity.this, getString(R.string.toast_adicionado_ao_carrinho), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ProdutoDetalheActivity.this, CarrinhoActivity.class));
                             finish();
                         }else{
-                            Toast.makeText(ProdutoDetalheActivity.this, "Quantidade acima do estoque.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProdutoDetalheActivity.this, "Não possuimos esta quantidade em estoque. Por favor tente novamente com uma quantidade menor", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

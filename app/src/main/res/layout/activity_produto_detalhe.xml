@@ -64,7 +64,7 @@
         android:layout_height="57dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorSecondary"
         android:text="Vender"
         android:textColor="@color/font_white"
         android:textSize="22sp"

@@ -57,8 +57,6 @@ public class ClientesActivity extends AppCompatActivity {
             }
         });
 
-
-        // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("clientes");
 
@@ -73,7 +71,7 @@ public class ClientesActivity extends AppCompatActivity {
                 clientes = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Cliente cliente = ds.getValue(Cliente.class);
-                    cliente.setKey(ds.getKey()); //armazena a UUID gerada pelo banco
+                    cliente.setKey(ds.getKey());
                     clientes.add(cliente);
                 }
 
@@ -85,19 +83,19 @@ public class ClientesActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w(TAG, "Ocorreu uma falha!", error.toException());
             }
         });
     }
 
     private void selecionarCliente(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //adiciona um título e uma mensagem
+
         builder.setTitle(R.string.title_selecionar_cliente);
         final Cliente cliente = clientes.get(position);
         builder.setMessage(getString(R.string.message_nome_cliente) + ": " + cliente.getNome() + " " + cliente.getSobrenome()
                 + " " + getString(R.string.message_cpf_cliente) + cliente.getCpf());
-        //adiciona os botões
+
         builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -136,7 +134,7 @@ public class ClientesActivity extends AppCompatActivity {
                         clientesTemp.add(cliente);
                     }
                 }
-                //carrega os dados na View
+
                 lvClientes.setAdapter(new ClientesAdapter(ClientesActivity.this, clientesTemp));
                 return true;
             }
