@@ -19,7 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.edu.ifsul.vendas3.R;
 import br.edu.ifsul.vendas3.adapter.CarrinhoAdapter;
@@ -37,6 +39,8 @@ public class CarrinhoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         setContentView(R.layout.activity_carrinho);
         TextView tvClienteCarrinho = findViewById(R.id.tvClienteCarrinho);
@@ -49,7 +53,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 excluiItem(position);
-                return false;
+                return true;
             }
         });
 
@@ -78,6 +82,9 @@ public class CarrinhoActivity extends AppCompatActivity {
             case R.id.menuitem_cancelar:
                 confirmaCancelar();
                 break;
+            case R.id.home:
+                finish();
+                break;
         }
         return true;
     }
@@ -91,9 +98,11 @@ public class CarrinhoActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which){
-                atualizarEstoque(position);
+
                 Intent intent = new Intent(CarrinhoActivity.this, ProdutoDetalheActivity.class);
                 intent.putExtra("position", AppSetup.produtos.get(position).getIndex());
+                atualizarEstoque(position);
+                finish();
                 startActivity(intent);
             }
 
@@ -143,7 +152,7 @@ public class CarrinhoActivity extends AppCompatActivity {
                     DatabaseReference myRef = database.getReference("produtos/" + item.getProduto().getKey() + "/quantidade");
                     myRef.setValue(item.getQuantidade() + item.getProduto().getQuantidade());
                     Log.d("removido", item.toString());
-                    Log.d("item", "item removido");
+                    Log.d("item", "Item Removido");
                 }
                 AppSetup.carrinho.clear();
                 AppSetup.cliente = null;
@@ -182,10 +191,18 @@ public class CarrinhoActivity extends AppCompatActivity {
                     pedido.setEstado("emAberto");
                     pedido.setFormaDePagamento("aVista");
                     pedido.setItens(AppSetup.carrinho);
+                    pedido.setKey(key);
                     pedido.setSituacao(true);
                     pedido.setTotalPedido(total);
 
                     myRef.child(key).setValue(pedido);
+
+                    DatabaseReference myRef2 = database.getReference("clientes");
+                    List<String> pedidos = new ArrayList<>();
+                    pedidos.addAll(AppSetup.cliente.getPedidos());
+                    pedidos.add(key);
+                    AppSetup.cliente.setPedidos(pedidos);
+                    myRef2.child(AppSetup.cliente.getKey()).setValue(AppSetup.cliente);
 
                     AppSetup.clientes = null;
                     AppSetup.carrinho.clear();
@@ -223,6 +240,6 @@ public class CarrinhoActivity extends AppCompatActivity {
 
         atualizaView();
 
-        Toast.makeText(CarrinhoActivity.this, "Item removido da venda", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CarrinhoActivity.this, "Item Removido da Venda com Sucesso", Toast.LENGTH_SHORT).show();
     }
 }

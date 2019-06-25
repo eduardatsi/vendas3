@@ -2,6 +2,7 @@
 package br.edu.ifsul.vendas3.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -46,6 +49,8 @@ public class ProdutosActivity extends AppCompatActivity
     private static final String TAG = "produtosactivity";
     private static final int RC_BARCODE_CAPTURE = 1;
     private ListView lvProdutos;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,17 @@ public class ProdutosActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerMain = navigationView.getHeaderView(0);
+        TextView tvUsuarioEmail = headerMain.findViewById(R.id.tvEmailUsuario);
+        TextView tvUsuarioNome = headerMain.findViewById(R.id.tvUsuarioNome);
+
+        tvUsuarioEmail.setText(AppSetup.user.getEmail());
+        tvUsuarioNome.setText(AppSetup.user.getNome());
+
+        if(AppSetup.user.getFuncao().equals("Administrador")){
+            navigationView.getMenu().findItem(R.id.groupAdm).setVisible(true);
+        }
 
         lvProdutos = findViewById(R.id.lv_produtos);
         lvProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -85,7 +101,7 @@ public class ProdutosActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 //imprime os dados originais no LogCat (veja que eles chegam na ordem de criação dos nós)
-                Log.d(TAG, "Value is: " + dataSnapshot.getValue());
+                //Log.d(TAG, "Value is: " + dataSnapshot.getValue());
 
                 AppSetup.produtos = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
@@ -113,6 +129,7 @@ public class ProdutosActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            verificaSair();
             super.onBackPressed();
         }
     }
@@ -133,7 +150,7 @@ public class ProdutosActivity extends AppCompatActivity
             public boolean onQueryTextChange(String newText) {
                 List<Produto> produtosTemp = new ArrayList<>();
                 for(Produto produto : AppSetup.produtos){
-                    if(produto.getNome().contains(newText)){
+                    if(produto.getNome().toLowerCase().contains(newText.toLowerCase())){
                         produtosTemp.add(produto);
                     }
                 }
@@ -211,49 +228,70 @@ public class ProdutosActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_clientes: {
-                if(AppSetup.clientes.isEmpty()) {
-                    Toast.makeText(this, "Não existem clientes cadastrados", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
+                startActivity(new Intent(ProdutosActivity.this, ClientesActivity.class));
+                break;
+            }
+            case R.id.nav_produto_adminstracao: {
+                startActivity(new Intent(ProdutosActivity.this, br.edu.ifsul.vendas.activity.ProdutoAdminActivity.class));
+                break;
+            }
+            case R.id.nav_cliente_administracao: {
+                startActivity(new Intent(ProdutosActivity.this, ClienteAdminActivity.class));
+                break;
+            }
+            case R.id.nav_usuario_administracao: {
+                startActivity(new Intent(ProdutosActivity.this, UsuarioAdminActivity.class));
+                break;
+            }
+            case R.id.nav_sobre: {
+                startActivity(new Intent(ProdutosActivity.this, SobreActivity.class));
+                break;
+            }
+            case R.id.nav_sair: {
+                if (AppSetup.carrinho.isEmpty()) {
+                    AppSetup.mAuth.signOut();
+                    startActivity(new Intent(ProdutosActivity.this, LoginActivity.class));
+                } else {
+                    verificaSair();
                 }
                 break;
             }
-//            case R.id.nav_produto_adminstracao: {
-//                if(AppSetup.produtos.isEmpty()) {
-//                    Toast.makeText(this, "Não existem produtos cadastrados", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//
-//                }
-//                break;
-//            }
-//            case R.id.nav_cliente_administracao: {
-//                if(AppSetup.produtos.isEmpty()) {
-//                    Toast.makeText(this, "Não existem clientes cadastrados", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//
-//                }
-//                break;
-////            }
-//              case R.id.nav_sobre: {
-//                startActivity(new Intent(ProdutosActivity.this, SobreActivity.class));
-//                break;
-//              }
-            case R.id.nav_sair: {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-            }
 
 
-            }
-
-
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void verificaSair(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        builder.setTitle(R.string.title_confimar);
+        builder.setMessage(R.string.message_confirma_sair);
 
+        builder.setPositiveButton(R.string.alertdialog_sim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                for (ItemPedido item : AppSetup.carrinho) {
+                    DatabaseReference myRef = database.getReference("produtos/" + item.getProduto().getKey() + "/quantidade");
+                    myRef.setValue(item.getQuantidade() + item.getProduto().getQuantidade());
+                    Log.d("removido", item.toString());
+                    Log.d("item", "item removido");
+                }
+                AppSetup.carrinho.clear();
+                AppSetup.cliente = null;
+                AppSetup.mAuth.signOut();
+                startActivity(new Intent(ProdutosActivity.this, LoginActivity.class));
+            }
+        });
+        builder.setNegativeButton(R.string.alertdialog_nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
+    }
 }
+
+
+//

@@ -2,6 +2,8 @@ package br.edu.ifsul.vendas3.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,9 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +41,8 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
     private ImageView imvFoto;
     private Button btVender;
     private Produto produto;
+    private ProgressBar pbFotoProdutoDetalhes;
+    private Bitmap fotoBitmap;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -51,17 +58,44 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
         etQuantidade = findViewById(R.id.etQuantidade);
         imvFoto = findViewById(R.id.imvFoto);
         btVender = findViewById(R.id.btComprarProduto);
+        tvVendedor = findViewById(R.id.btComprarProduto);
+        pbFotoProdutoDetalhes = findViewById(R.id.pbFotoProdutoDetalhes);
 
         Integer position = getIntent().getExtras().getInt("position");
         produto = AppSetup.produtos.get(position);
-        Log.d(TAG, "" + produto.equals(AppSetup.produtos.get(position)));
+        //Log.d(TAG, "" + produto.equals(AppSetup.produtos.get(position)));
 
 
         tvNome.setText(produto.getNome());
         tvDescricao.setText((produto.getDescricao()));
         tvValor.setText(NumberFormat.getCurrencyInstance().format(AppSetup.produtos.get(position).getValor()));
+        tvVendedor.setText(AppSetup.user.getEmail());
+
         if(produto.getUrl_foto().equals("")) {
-            //carrega a imagem aqui
+            pbFotoProdutoDetalhes.setVisibility(ProgressBar.INVISIBLE);
+        } else {
+            //faz o download do servidor
+            if(AppSetup.cacheProdutos.get(produto.getKey()) == null){
+                StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("produtos/" + produto.getCodigoDeBarras() + ".jpeg");
+                final long ONE_MEGABYTE = 1024 * 1024;
+                mStorageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        fotoBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        imvFoto.setImageBitmap(fotoBitmap);
+                        AppSetup.cacheProdutos.put(produto.getKey(), fotoBitmap);
+                        pbFotoProdutoDetalhes.setVisibility(ProgressBar.INVISIBLE);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.d(TAG, "Download da foto do produto falhou: " + "produtos/" + produto.getCodigoDeBarras() + ".jpeg");
+                    }
+                });
+            }else{
+                imvFoto.setImageBitmap(AppSetup.cacheProdutos.get(produto.getKey()));
+                pbFotoProdutoDetalhes.setVisibility(ProgressBar.INVISIBLE);
+            }
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

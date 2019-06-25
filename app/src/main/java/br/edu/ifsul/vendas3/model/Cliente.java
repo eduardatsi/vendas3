@@ -1,6 +1,8 @@
 package br.edu.ifsul.vendas3.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente implements Serializable {
     private Long codigoDeBarras;
@@ -10,6 +12,7 @@ public class Cliente implements Serializable {
     private String url_foto;
     private boolean situacao;
     private String key; //atributo apenas local
+    private List<String> pedidos = new ArrayList<>();
 
     public Cliente() {
     }
@@ -68,6 +71,12 @@ public class Cliente implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public List<String> getPedidos() { return pedidos; }
+
+    public void setPedidos(List<String> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @SuppressWarnings("NullableProblems")

@@ -49,6 +49,9 @@ public class ClientesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         lvClientes = findViewById(R.id.lv_clientes);
         lvClientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -68,7 +71,7 @@ public class ClientesActivity extends AppCompatActivity {
                 //imprime os dados originais no LogCat (veja que eles chegam na ordem de criação dos nós)
                 Log.d(TAG, "Value is: " + dataSnapshot.getValue());
 
-                clientes = new ArrayList<>();
+                AppSetup.clientes.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Cliente cliente = ds.getValue(Cliente.class);
                     cliente.setKey(ds.getKey());
@@ -82,7 +85,6 @@ public class ClientesActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Failed to read value
                 Log.w(TAG, "Ocorreu uma falha!", error.toException());
             }
         });
@@ -129,7 +131,7 @@ public class ClientesActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 List<Cliente> clientesTemp = new ArrayList<>();
-                for(Cliente cliente : clientes){
+                for(Cliente cliente : AppSetup.clientes){
                     if(cliente.getNome().contains(newText)){
                         clientesTemp.add(cliente);
                     }
@@ -150,6 +152,9 @@ public class ClientesActivity extends AppCompatActivity {
                 intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
                 intent.putExtra(BarcodeCaptureActivity.UseFlash, false);
                 startActivityForResult(intent, RC_BARCODE_CAPTURE);
+                break;
+            case android.R.id.home:
+                finish();
                 break;
         }
 
