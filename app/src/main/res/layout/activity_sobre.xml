@@ -34,7 +34,7 @@
         android:layout_width="362dp"
         android:layout_height="111dp"
         android:layout_marginTop="32dp"
-        android:text="Aplicativo desenvolvido em código nativo para Android, Java. Integrado com serviços do Firebase.  Aplicativo utilizado como forma de avalição para a disciplina de Programação de Dispositivos Móveis. "
+        android:text="Aplicativo desenvolvido  para a disciplina de Programação de Dispositivos Móveis. Neste aplicativo é desenvolvido em Java com integração dos serviços do Firebase "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Desenvolvido por: Jonathan Fiss"
+        android:text="Desenvolvido por : Eduarda Eisfeld Conde"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

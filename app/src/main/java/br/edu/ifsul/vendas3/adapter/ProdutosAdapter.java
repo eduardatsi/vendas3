@@ -113,7 +113,7 @@ public class ProdutosAdapter extends ArrayAdapter<Produto> {
             tvEstoque = view.findViewById(R.id.tvEstoqueProdutoAdapater);
             tvValor = view.findViewById(R.id.tvValorProdutoItemAdapter);
             imvFoto = view.findViewById(R.id.imvFotoProdutoAdapter);
-            pbFotoProduto = view.findViewById(R.id.imvFotoProdutoAdapter);
+            pbFotoProduto = view.findViewById(R.id.progressBarItemProduto);
         }
     }
 }
