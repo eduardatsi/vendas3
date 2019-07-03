@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.NumberFormat;
 
@@ -36,7 +38,7 @@ import br.edu.ifsul.vendas3.setup.AppSetup;
 public class ProdutoDetalheActivity extends AppCompatActivity {
 
     private static final String TAG = "produtoDetalheActivity";
-    private TextView tvNome, tvDescricao, tvValor, tvEstoque;
+    private TextView tvNome, tvDescricao, tvValor, tvEstoque, tvVendedor;
     private EditText etQuantidade;
     private ImageView imvFoto;
     private Button btVender;
@@ -58,7 +60,7 @@ public class ProdutoDetalheActivity extends AppCompatActivity {
         etQuantidade = findViewById(R.id.etQuantidade);
         imvFoto = findViewById(R.id.imvFoto);
         btVender = findViewById(R.id.btComprarProduto);
-        tvVendedor = findViewById(R.id.btComprarProduto);
+        tvVendedor = findViewById(R.id.tvVendedor);
         pbFotoProdutoDetalhes = findViewById(R.id.pbFotoProdutoDetalhes);
 
         Integer position = getIntent().getExtras().getInt("position");

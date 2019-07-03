@@ -1,4 +1,4 @@
-package br.edu.ifsul.vendas.adapter;
+package br.edu.ifsul.vendas3.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -23,9 +23,12 @@ import com.google.firebase.storage.StorageReference;
 import java.text.NumberFormat;
 import java.util.List;
 
-import br.edu.ifsul.vendas.R;
-import br.edu.ifsul.vendas.model.Produto;
-import br.edu.ifsul.vendas.setup.AppSetup;
+import br.edu.ifsul.vendas3.R;
+import br.edu.ifsul.vendas3.model.Produto;
+import br.edu.ifsul.vendas3.setup.AppSetup;
+import br.edu.ifsul.vendas3.R;
+import br.edu.ifsul.vendas3.model.Produto;
+import br.edu.ifsul.vendas3.setup.AppSetup;
 
 public class ProdutosAdapter extends ArrayAdapter<Produto> {
 
@@ -110,7 +113,7 @@ public class ProdutosAdapter extends ArrayAdapter<Produto> {
             tvEstoque = view.findViewById(R.id.tvEstoqueProdutoAdapater);
             tvValor = view.findViewById(R.id.tvValorProdutoItemAdapter);
             imvFoto = view.findViewById(R.id.imvFotoProdutoAdapter);
-            pbFotoProduto = view.findViewById(R.id.pb_foto_produtos_adapter);
+            pbFotoProduto = view.findViewById(R.id.imvFotoProdutoAdapter);
         }
     }
 }

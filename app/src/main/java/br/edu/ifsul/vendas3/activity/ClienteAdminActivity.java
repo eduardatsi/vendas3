@@ -387,5 +387,4 @@ import br.edu.ifsul.vendas3.setup.AppSetup;
             mProgressDialog.dismiss();
         }
 
-    }//fim classe
 }

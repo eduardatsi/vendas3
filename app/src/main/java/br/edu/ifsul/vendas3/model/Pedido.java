@@ -16,7 +16,7 @@ public class Pedido {
 
     public Pedido(){}
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 

@@ -42,7 +42,7 @@
     <string name="snack_operacao_cancelada" translatable="false">Operação cancelada</string>
     <string name="snack_codigo_barras_nao_cadastrado" translatable="false">Código de Barras NÃO encontrado.</string>
     <string name="barcode_failure" translatable="false">Falha no código de barras</string>
-    <string name="barcode_error" translatable="false">erro no código de barras</string>
+    <string name="barcode_error" translatable="false">Error reading barcode: %1$s</string>
     <string name="toast_adicionado_ao_carrinho" translatable="false">O produto foi adicionado com sucesso!</string>
     <string name="permission_camera_rationale" translatable="false">Permissão</string>
     <string name="ok" translatable="false">Ok</string>
@@ -73,18 +73,25 @@
     <string name="hint_digite_valor" translatable="false">Digite o valor</string>
     <string name="label_quantidade" translatable="false">Quantidade</string>
     <string name="hint_quantidade_digite" translatable="false">Digite a quantidade</string>
-    <string name="titulo_janela_galeria_imagens">Selecione uma imagem</string>
-    <string name="snack_preencher_todos_campos">Todos os campos devem ser preenchidos</string>
-    <string name="toast_foto_cliente_upload_fail">A foto não pode ser salva</string>
-    <string name="toast_codigo_barras_ja_cadastrado">Código de Barras já cadastrado</string>
-    <string name="toast_cliente_salvo">Cliente Salvo</string>
-    <string name="snack_operacao_falhou">A operação falhou</string>
-    <string name="toast_produto_salvo">Produto Salvo</string>
-    <string name="toast_produto_nao_cadastrado">Produto não cadastrado</string>
-    <string name="message_processando">Processando...</string>
-    <string name="input_error_invalido">Inválido</string>
-    <string name="esqueceu_senha_tela_login">Esqueceu a senha?</string>
-    <string name="snack_insira_email">Insira o email</string>
-    <string name="toast_problemas_signin">Problemas ao entrar</string>
-    <string name="toast_foto_produto_upload_fail">Upload da foto falhou</string>
+    <string name="titulo_janela_galeria_imagens" translatable="false">Selecione uma imagem</string>
+    <string name="snack_preencher_todos_campos" translatable="false">Todos os campos devem ser preenchidos</string>
+    <string name="toast_foto_cliente_upload_fail" translatable="false">A foto não pode ser salva</string>
+    <string name="toast_codigo_barras_ja_cadastrado" translatable="false">Código de Barras já cadastrado</string>
+    <string name="toast_cliente_salvo" translatable="false">Cliente Salvo</string>
+    <string name="snack_operacao_falhou" translatable="false">A operação falhou</string>
+    <string name="toast_produto_salvo" translatable="false">Produto Salvo</string>
+    <string name="toast_produto_nao_cadastrado" translatable="false">Produto não cadastrado</string>
+    <string name="message_processando" translatable="false">Processando...</string>
+    <string name="input_error_invalido" translatable="false">Inválido</string>
+    <string name="esqueceu_senha_tela_login" translatable="false">Esqueceu a senha?</string>
+    <string name="snack_insira_email" translatable="false">Insira o email</string>
+    <string name="toast_problemas_signin" translatable="false">Problemas ao entrar</string>
+    <string name="toast_foto_produto_upload_fail" translatable="false">Upload da foto falhou</string>
+    <string name="tv_funcao" translatable="false">Função</string>
+    <string name="btCadastrarUser" translatable="false">Cadastrar Usuário</string>
+    <string name="menu_nav_usuario_admin" translatable="false">Usuário</string>
+    <string name="message_confirma_sair" translatable="false">Deseja sair?</string>
+    <string name="tvNomeClientesAdapter" type="id" translatable="false">Nome</string>
+    <string name="tvCPFItemAdapter" type="id" translatable="false">CPF</string>
+    <string name="pb_foto_clientes_adapter" type="id" translatable="false">Foto</string>
 </resources>

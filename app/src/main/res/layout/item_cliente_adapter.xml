@@ -10,26 +10,27 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/backgroundCards">
+            android:layout_height="wrap_content">
+
 
             <TextView
-                android:id="@+id/tvNomeClienteAdapter"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/tvNomeClientesAdapter"
+                android:layout_width="142dp"
+                android:layout_height="24dp"
                 android:layout_gravity="start"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
@@ -50,13 +51,34 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:contentDescription="foto cliente"
+                android:contentDescription="@string/content_description_foto_produto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/img_cliente_icon_524x524" />
 
+            <TextView
+                android:id="@+id/tvCPFItemAdapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="108dp"
+                android:layout_marginLeft="108dp"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/hint_cpf"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/pb_foto_clientes_adapter"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/imvFotoClienteAdapter"
+                app:layout_constraintEnd_toEndOf="@+id/imvFotoClienteAdapter"
+                app:layout_constraintStart_toStartOf="@+id/imvFotoClienteAdapter"
+                app:layout_constraintTop_toTopOf="@+id/imvFotoClienteAdapter" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

@@ -6,5 +6,5 @@
     <color name="colorSecondary">#E0AA02</color>
     <color name="font_white">#FFFFFF</color>
     <color name="backgroundCards">#CECEF6</color>
-    <color name="fontColor">fontColor</color>
+    <color name="fontColor">#1C1C1C</color>
 </resources>

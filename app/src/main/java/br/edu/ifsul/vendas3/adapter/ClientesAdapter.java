@@ -2,9 +2,12 @@ package br.edu.ifsul.vendas3.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import java.text.NumberFormat;
 import java.util.List;
 
@@ -24,7 +31,10 @@ import br.edu.ifsul.vendas3.model.Produto;
 import br.edu.ifsul.vendas3.setup.AppSetup;
 
 public class ClientesAdapter extends ArrayAdapter<Cliente> {
+
     private final Context context;
+    private Bitmap fotoBitmap;
+    private final String TAG = "clientesadapter";
 
     public ClientesAdapter(@NonNull Context context, @NonNull List<Cliente> clientes) {
         super(context, 0, clientes);
@@ -38,11 +48,11 @@ public class ClientesAdapter extends ArrayAdapter<Cliente> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         final Cliente cliente = getItem(position);
-
+        final ViewHolder holder;
         //infla a view
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_cliente_adapter, parent, false);
-            holder = new RecyclerView.ViewHolder(convertView);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -61,9 +71,9 @@ public class ClientesAdapter extends ArrayAdapter<Cliente> {
                 mStorageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
                     public void onSuccess(byte[] bytes) {
-                        fotoEmBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        holder.imvFoto.setImageBitmap(fotoEmBitmap);
-                        AppSetup.cacheClientes.put(cliente.getKey(), fotoEmBitmap);
+                        fotoBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        holder.imvFoto.setImageBitmap(fotoBitmap);
+                        AppSetup.cacheClientes.put(cliente.getKey(), fotoBitmap);
                         holder.pbFotoProduto.setVisibility(ProgressBar.INVISIBLE);
                     }
                 }).addOnFailureListener(new OnFailureListener() {

@@ -7,11 +7,13 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -90,7 +92,8 @@ public class UsuarioAdminActivity extends AppCompatActivity {
                                 Snackbar.make(findViewById(R.id.container_activity_login), R.string.email_already, Snackbar.LENGTH_LONG).show();
                                 etEmailUser.setError(getString(R.string.input_error_invalido));
                             } else {
-                                Snackbar.make(findViewById(R.id.container_activity_login), R.string.signup_fail, Snackbar.LENGTH_LONG).show();
+                                //Toast.makeText(this, barcode.displayValue, Toast.LENGTH_SHORT).show();
+                                Snackbar.make(findViewById(R.id.container_activity_login), R.string.email_already, Snackbar.LENGTH_LONG).show();
                             }
 
                         }
@@ -111,6 +114,15 @@ public class UsuarioAdminActivity extends AppCompatActivity {
         AppSetup.user = user;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
 //    private void sendEmailVerification() {
 //        final FirebaseUser user = mAuth.getCurrentUser();
 //        user.sendEmailVerification()
