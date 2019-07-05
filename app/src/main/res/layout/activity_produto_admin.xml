@@ -167,7 +167,7 @@
                 android:layout_marginRight="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorSecondary"
                 android:text="@string/bt_salvar"
                 android:textColor="@color/fontColor"
                 android:textSize="22sp"

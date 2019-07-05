@@ -69,9 +69,7 @@ public class Cliente implements Serializable {
         return key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
+    public void setKey(String key) { this.key = key; }
 
     public List<String> getPedidos() { return pedidos; }
 

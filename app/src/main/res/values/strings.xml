@@ -25,8 +25,8 @@
     <string name="label_estoque" translatable="false">Estoque:</string>
     <string name="menu_nav_carrinho" translatable="false">Carrinho</string>
     <string name="menu_nav_lista_de_clientes" translatable="false">Clientes</string>
-    <string name="menu_nav_produto_admin" translatable="false">Lista de Produtos</string>
-    <string name="menu_nav_cliente_admin" translatable="false">Lista de Clientes</string>
+    <string name="menu_nav_produto_admin" translatable="false">Cadastro de Produtos</string>
+    <string name="menu_nav_cliente_admin" translatable="false">Cadastro de Clientes</string>
     <string name="menu_nav_sobre" translatable="false">Sobre</string>
     <string name="menu_nav_sair" translatable="false">Sair</string>
     <string name="menu_vender" translatable="false">Vender</string>
@@ -88,7 +88,7 @@
     <string name="toast_problemas_signin" translatable="false">Problemas ao entrar</string>
     <string name="toast_foto_produto_upload_fail" translatable="false">Upload da foto falhou</string>
     <string name="tv_funcao" translatable="false">Função</string>
-    <string name="btCadastrarUser" translatable="false">Cadastrar Usuário</string>
+    <string name="btCadastrarUser" translatable="false">Cadastrar</string>
     <string name="menu_nav_usuario_admin" translatable="false">Usuário</string>
     <string name="message_confirma_sair" translatable="false">Deseja sair?</string>
     <string name="tvNomeClientesAdapter" type="id" translatable="false">Nome</string>

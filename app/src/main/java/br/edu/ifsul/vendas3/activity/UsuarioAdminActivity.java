@@ -37,6 +37,10 @@ public class UsuarioAdminActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //ativa o botão home na actionbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_admin);
 
@@ -112,6 +116,9 @@ public class UsuarioAdminActivity extends AppCompatActivity {
                 .child(user.getFirebaseUser().getUid())
                 .setValue(user);
         AppSetup.user = user;
+        Toast.makeText(UsuarioAdminActivity.this,
+                "Usuário cadastrado com sucesso!.",
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override

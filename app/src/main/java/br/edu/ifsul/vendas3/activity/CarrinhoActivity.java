@@ -82,7 +82,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             case R.id.menuitem_cancelar:
                 confirmaCancelar();
                 break;
-            case R.id.home:
+            case android.R.id.home:
                 finish();
                 break;
         }
@@ -204,7 +204,7 @@ public class CarrinhoActivity extends AppCompatActivity {
                     AppSetup.cliente.setPedidos(pedidos);
                     myRef2.child(AppSetup.cliente.getKey()).setValue(AppSetup.cliente);
 
-                    AppSetup.clientes = null;
+                    AppSetup.cliente = null;
                     AppSetup.carrinho.clear();
                     AppSetup.pedido = null;
                     finish();

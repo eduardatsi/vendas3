@@ -144,7 +144,7 @@
         android:layout_marginRight="32dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/bt_ver_pedidos"
-        android:textColor="@color/fontColor"
+        android:textColor="@color/font_white"
         android:textSize="19sp"
         app:layout_constraintBottom_toBottomOf="@+id/btSalvarClienteTelaAdmin"
         app:layout_constraintEnd_toEndOf="parent"

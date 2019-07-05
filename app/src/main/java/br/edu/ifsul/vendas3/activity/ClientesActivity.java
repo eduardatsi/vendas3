@@ -39,7 +39,7 @@ import static br.edu.ifsul.vendas3.setup.AppSetup.clientes;
 
 public class ClientesActivity extends AppCompatActivity {
 
-    private static final String TAG = "clientesactivity";
+    private static final String TAG = "clientesctivity";
     private static final int RC_BARCODE_CAPTURE = 1;
     private ListView lvClientes;
 
@@ -74,8 +74,7 @@ public class ClientesActivity extends AppCompatActivity {
                 AppSetup.clientes.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Cliente cliente = ds.getValue(Cliente.class);
-                    cliente.setKey(ds.getKey());
-                    clientes.add(cliente);
+                    AppSetup.clientes.add(cliente);
                 }
 
                 //carrega os dados na View
@@ -172,7 +171,7 @@ public class ClientesActivity extends AppCompatActivity {
                     //localiza o produto na lista (ou não)
                     boolean flag = true;
                     int position = 0;
-                    for (Cliente cliente : clientes) {
+                    for (Cliente cliente : AppSetup.clientes) {
                         if (String.valueOf(cliente.getCodigoDeBarras()).equals(barcode.displayValue)) {
                             flag = false;
                             Intent intent = new Intent(ClientesActivity.this, ClienteDetalheActivity.class);
@@ -183,7 +182,7 @@ public class ClientesActivity extends AppCompatActivity {
                         position++;
                     }
                     if (flag) {
-                        Snackbar.make(findViewById(R.id.container_activity_produtos), "codigo de barras não cadastrado", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(R.id.container_activity_clientes), "codigo de barras não cadastrado", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(this, "Falha na leitura do código", Toast.LENGTH_SHORT).show();
